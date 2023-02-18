@@ -2,47 +2,33 @@
 
 // function to calculate area of triangle,rhombus,pentagon
 let serial = 0;
-function funcToCalc(
-  shapeBtnId,
-  shapeNameId,
-  angle1InputId,
-  angle2InputId,
-  valueForHalfOrPhiOrOne
-) {
+function funcToCalc(shapeBtnId,shapeNameId,angle1InputId,angle2InputId,valueForHalfOrPhiOrOne) {
   document.getElementById(shapeBtnId).addEventListener("click", function () {
     serial += 1;
     const angleOne = document.getElementById(angle1InputId).value;
     const angleTwo = document.getElementById(angle2InputId).value;
     if (
-      isNaN(angleOne) ||
-      angleOne < 0 ||
-      angleOne == "" ||
-      isNaN(angleTwo) ||
-      angleTwo < 0 ||
-      angleTwo == ""
+      isNaN(angleOne) ||angleOne < 0 ||angleOne == "" ||
+      isNaN(angleTwo) ||angleTwo < 0 ||angleTwo == ""
     ) {
       alert("Please input a valid number");
       return;
+     
     }
     const shape = document.getElementById(shapeNameId).innerText;
-    const areaInCm = areaCalc(
-      valueForHalfOrPhiOrOne,
-      angle1InputId,
-      angle2InputId
-    ); //area in cm calc function
-    const areaInM = cmToMCalc(
-      valueForHalfOrPhiOrOne,
-      angle1InputId,
-      angle2InputId
-    ); //area in cm calc function
+     //area in cm calc function
+    const areaInCm = areaCalc(valueForHalfOrPhiOrOne,angle1InputId,angle2InputId);
+    //area in m calc function
+    const areaInM = cmToMCalc(valueForHalfOrPhiOrOne,angle1InputId,angle2InputId); 
 
-    displayTableData(serial, shape, areaInCm, areaInM);
     // function called to show data on table
+    displayTableData(serial, shape, areaInCm, areaInM);
+    // empty the input value
     document.getElementById(angle1InputId).value = "";
     document.getElementById(angle2InputId).value = "";
   });
 }
-// function to calculate shape area
+// function to calculate area of shape 
 function areaCalc(halfOrPhiOrOne, angle1Value, angle2Value) {
   const angleOne = document.getElementById(angle1Value).value;
   const angleTwo = document.getElementById(angle2Value).value;
@@ -80,21 +66,25 @@ function displayTableData(serial, shapeName, areaCm, areaM) {
   }
 }
 
-function randomColorGen() {
-  return "hsla(" + Math.random() * 360 + ", 100%, 30%, 1)";
+// random background color generator
+function randomColorGen1() {
+  return "hsla(" + Math.random() * 360 + ", 100%, 90%, 0.5)";
+}
+function randomColorGen2() {
+  return "hsla(" + Math.random() * 260 + ", 100%, 90%, 0.5)";
 }
 
-const randomColor = randomColorGen();
 
 const cards = document.querySelectorAll(".card");
 for (const card of cards) {
-  card.addEventListener("mouseout", function (e) {
-    e.target.parentNode.style.backgroundColor = randomColor;
+  card.addEventListener("mouseover", function (e) {
+    e.target.parentNode.style.backgroundColor = randomColorGen1();
   });
 }
-// const mouseOut = document.querySelectorAll(".card");
-// for (const card of mouseOut) {
-//   card.addEventListener("mouseout", function (e) {
-//     e.target.parentNode.style.backgroundColor = "none";
-//   });
-// }
+const elements = document.querySelectorAll(".card");
+for (const element of elements) {
+  element.addEventListener("mouseleave", function (e) {
+    e.target.style.backgroundColor = randomColorGen2()
+    console.log(e.target)
+  });
+}
