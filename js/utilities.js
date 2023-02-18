@@ -25,9 +25,9 @@ function funcToCalc(
       return;
     }
     const shape = document.getElementById(shapeNameId).innerText;
-    const area = areaCalc(valueForHalfOrPhiOrOne, angle1InputId, angle2InputId); //area calc function called here
-
-    displayTableData(serial, shape, area); // function called to show data on table
+    const areaInCm = areaCalc(valueForHalfOrPhiOrOne, angle1InputId, angle2InputId); //area in cm calc function
+    const areaInM = cmToMCalc(valueForHalfOrPhiOrOne, angle1InputId, angle2InputId);//area in m calc function
+    displayTableData(serial, shape, areaInCm,areaInM); // function called to show data on table
   });
 }
 // function to calculate shape area
@@ -35,17 +35,27 @@ function areaCalc(halfOrPhiOrOne, angle1Value, angle2Value) {
   const angleOne = document.getElementById(angle1Value).value;
   const angleTwo = document.getElementById(angle2Value).value;
   const shapeArea = halfOrPhiOrOne * angleOne * angleTwo;
-  return parseFloat(shapeArea.toFixed(3));
+  return parseFloat(shapeArea.toFixed());
+}
+//function for show shap area in meter 
+function cmToMCalc(halfOrPhiOrOne, angle1Value, angle2Value) {
+  const angleOneCm = document.getElementById(angle1Value).value;
+  const angleOneM = angleOneCm/ 100;
+  const angleTwoCm = document.getElementById(angle2Value).value;
+  const angleTwoM = angleTwoCm/100;
+  const shapeAreaM = halfOrPhiOrOne * angleOneM * angleTwoM;
+  return parseFloat(shapeAreaM.toFixed(4));
 }
 
 //function to display shape data on table
-function displayTableData(serial, shapeName, area) {
+function displayTableData(serial, shapeName, areaCm,areaM) {
   const container = document.getElementById("table-container");
   const tr = document.createElement("tr");
   tr.innerHTML = `
   <td>${serial + "."}</td>
   <td>${shapeName}</td>
-  <td>${area + "cm<sup>2</sup>"}</td>
+  <td>${areaCm + "cm<sup>2</sup>"}</td>
+  <td>${areaM + "m<sup>2</sup>"}</td>
   `;
   container.appendChild(tr);
 }
