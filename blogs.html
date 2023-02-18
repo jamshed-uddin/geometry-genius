@@ -21,8 +21,8 @@
                         Genious</span></a>
             </div>
 
-            <div class="navbar-end">
-                <a id="blogsToHome-btn" class="btn bg-blue-600 hover:bg-blue-500 border-0">Home</a>
+            <div id="hello" class="navbar-end">
+                <button id="blogsToHome-btn" class="btn bg-blue-600 hover:bg-blue-500 border-0">Home</button>
             </div>
         </div>
     </header>
@@ -32,13 +32,13 @@
 
 
     <main class="mt-20 pt-5">
-        <h3 class="text-2xl font-bold mb-5 px-3 py-2 border-l-4 border-blue-600">BLOGS</h3>
+        <h3 id="blog-title" class="text-2xl font-bold mb-5 px-3 py-2 border-l-4 border-blue-600">BLOGS</h3>
         <div class="w-full grid grid-cols-1 lg:grid-cols-3 gap-3">
             <!-- blog 1 starts-->
             <div class="card w-full shadow-lg border border-gray-200 h-full">
                 <div class="card-body">
                     <h2 class="card-title">What is DOM? What's the purpose of DOM?</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                    <p>DOM or Document Object Model a language nutral...</p>
                     <div class="card-actions justify-end">
                         <label for="my-modal-1" class="btn bg-blue-600 hover:bg-blue-500 border-0">More</label>
                     </div>
@@ -51,8 +51,14 @@
                     <h3 class="font-bold text-lg px-3 border-l-4 border-blue-600">What is DOM? What's the purpose of
                         DOM?
                     </h3>
-                    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia
-                        for free!
+                    <p class="py-4">DOM or Document Object Model a language nutral interface.This document enables
+                        Javascript to access and manipulate the elements and styles of a website.It can access the HTML
+                        or XML document and treat as trea structure, a logical structure.For example whole html is a
+                        document,html is the root element.Each brance of the brance ends with node.DOM access the
+                        document through it's event handlers.By using event handlers one can change styles,text,lot
+                        more.By using DOM one can access parent node to child node or child node to parent node.To
+                        select these node DOM have few selecting methods.With those selectors one can modify specific
+                        element or more than one at once.There lot more facilities DOM provide.
                     </p>
                     <div class="modal-action">
                         <label for="my-modal-1" class="btn bg-blue-600 hover:bg-blue-500 border-0">Back</label>
@@ -140,9 +146,11 @@
 
         </div>
     </main>
-    <!-- js file -->
-    <script src="js/utilities.js"></script>
-    <script src="js/index.js"></script>
+    <script>
+        document.getElementById('blogsToHome-btn').addEventListener("click", function () {
+            location.href = "index.html";
+        })
+    </script>
 </body>
 
 </html>
