@@ -1,11 +1,13 @@
-// function for get shapes's angles and name and area
+//function to calculate ractangle and parallelogram area and show data
 
+// function to calculate area of triangle,rhombus,pentagon
 function funcToCalc(
   shapeBtnId,
   clickEvent,
   shapeNameId,
   angle1InputId,
-  angle2InputId
+  angle2InputId,
+  valueForHalfOrPhiOrOne
 ) {
   document.getElementById(shapeBtnId).addEventListener(clickEvent, function () {
     serial += 1;
@@ -23,29 +25,27 @@ function funcToCalc(
       return;
     }
     const shape = document.getElementById(shapeNameId).innerText;
-    const area = areaAll(0.5, angle1InputId, angle2InputId);
+    const area = areaCalc(valueForHalfOrPhiOrOne, angle1InputId, angle2InputId); //area calc function called here
 
-    displayTableData(serial, shape, area);
+    displayTableData(serial, shape, area); // function called to show data on table
   });
 }
-
-function areaAll(halfOrPhiOrOne, angle1Value, angle2Value) {
+// function to calculate shape area
+function areaCalc(halfOrPhiOrOne, angle1Value, angle2Value) {
   const angleOne = document.getElementById(angle1Value).value;
   const angleTwo = document.getElementById(angle2Value).value;
   const shapeArea = halfOrPhiOrOne * angleOne * angleTwo;
   return parseFloat(shapeArea.toFixed(3));
 }
 
+//function to display shape data on table
 function displayTableData(serial, shapeName, area) {
   const container = document.getElementById("table-container");
   const tr = document.createElement("tr");
   tr.innerHTML = `
   <td>${serial + "."}</td>
   <td>${shapeName}</td>
-  <td>${area}</td>
-  
-  
-  
+  <td>${area + "cm<sup>2</sup>"}</td>
   `;
   container.appendChild(tr);
 }
