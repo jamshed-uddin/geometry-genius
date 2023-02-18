@@ -49,3 +49,11 @@ function displayTableData(serial, shapeName, area) {
   `;
   container.appendChild(tr);
 }
+
+// function to redirect to another page
+
+function redirector(btnId,pageLink){
+  document.getElementById(btnId).addEventListener('click',function(){
+    location.href = pageLink
+  })
+}
