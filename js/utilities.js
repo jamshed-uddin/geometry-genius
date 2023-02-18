@@ -68,10 +68,10 @@ function displayTableData(serial, shapeName, areaCm, areaM) {
 
 // random background color generator
 function randomColorGen1() {
-  return "hsla(" + Math.random() * 360 + ", 100%, 90%, 0.5)";
+  return "hsla(" + Math.floor( Math.random()) * 360 + ", 100%, 90%, 0.5)";
 }
 function randomColorGen2() {
-  return "hsla(" + Math.random() * 260 + ", 100%, 90%, 0.5)";
+  return "hsla(" + Math.floor( Math.random()) * 260 + ", 100%, 90%, 0.5)";
 }
 
 
